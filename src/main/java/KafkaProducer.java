@@ -30,12 +30,15 @@ public class KafkaProducer {
     props.setProperty("linger.ms","1000");
     Producer<String,String> producer=new org.apache.kafka.clients.producer.KafkaProducer<String,String>(props);
 
-    ProducerRecord<String,String> pr=new ProducerRecord<String, String>("first_topc","3","messagetest");
-    producer.send(pr);
+   // ProducerRecord<String,String> pr=new ProducerRecord<String, String>("first_topc","3","messagetest");
+    //producer.send(pr);
+
+
+    for(int key=0;key<10;key++){
+        ProducerRecord<String,String> pr=new ProducerRecord<String, String>("third_topic",Integer.toString(key),"messagetest"+Integer.toString(key));
+        producer.send(pr);
+    }
     producer.close();
-
-
-
 }
 
 }
